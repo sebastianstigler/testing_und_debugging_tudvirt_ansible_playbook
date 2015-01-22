@@ -24,6 +24,9 @@
   template: src=hostname.j2 dest=/etc/hostname
   notify: Restart hostname service
 
+- name: Set hostname entry in hosts file
+  template: src=hosts.j2 dest=/etc/hosts
+
 - name: Set keyboard
   copy: src=keyboard dest=/etc/default/keyboard
   notify: Reconfigure keyboard
