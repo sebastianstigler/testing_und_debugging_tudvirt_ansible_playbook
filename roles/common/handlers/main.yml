@@ -1,0 +1,10 @@
+---
+- name: Restart hostname service
+  service: name=hostname state=restarted
+
+
+- name: Reconfigure keyboard
+  shell: "{{ item }}"
+  with_items:
+    - dpkg-reconfigure -fnoninteractive -pcritical keyboard-configuration
+    - setupcon

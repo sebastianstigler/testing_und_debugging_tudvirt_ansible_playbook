@@ -1,0 +1,98 @@
+Hinweise zum Arbeiten in der virtuellen Maschine
+================================================
+
+Sorgen Sie dafür, dass all Ihre Arbeiten in einem Unterverzeichnis von
+'/home/user/project' stattfinden, da dieses Verzeichnis per Browser
+außerhalb der virtuellen Maschine via http://127.0.0.1:8001/project/ zugänglich
+ist.
+
+Herunterladen der Übungsaufgaben
+--------------------------------
+
+Sie können die Aufgabenstellungen direkt mit dem 'wget' Befehl von der, auf
+Twitter angegebenen Webseite, herunterladen. Hilfe zu wget erhalten Sie per:
+
+  man wget
+
+.Beispiel:
+
+Die Übung 01 liegt auf
+https://github.com/sebastianstigler/testing_und_debugging/archive/uebung01.zip
+
+Dann tippen Sie in der virtuellen Maschine:
+
+  cd /home/user/project
+  wget -O uebung01.zip https://github.com/sebastianstigler/testing_und_debugging/archive/uebung01.zip
+  unzip uebung01.zip
+  cd uebung01
+
+Abgabe der Übung
+----------------
+
+Sie dürfen die Aufgaben in Gruppen von maximal 3 Studenten gemeinsam
+bearbeiten.  Es muss nur ein Exemplar Ihrer Übung pro Gruppe abgegeben werden!
+
+Bearbeiten Sie die Übungsaufgabe so, wie es in der pdf Datei angegeben ist.
+
+Vor der ersten Abgabe legen Sie sich auf https://github.com einen Account an.
+
+Mailen Sie den Anmeldename (nicht das Passwort), sowie die Namen und
+Matrikelnummern Ihrer Gruppenmitglieder an sebastian.stigler@htw-aalen.de mit
+dem Betreff: 'Testing und Debugging Github Account'
+
+Zum Abgeben wechseln Sie in das Verzeichnis der Übung, in der sich die Datei
+'submit.cfg' befindet. Tippen Sie nun den Befehl
+
+  submit
+
+ein.
+
+Beim erstmaligen Aufrufen werden Sie nach Ihren Anmeldedaten bei github
+gefragt.
+
+IPython
+-------
+
+Wenn Sie  die interaktiven Beispiele aus der Vorlesung noch einmal selbst
+durcharbeiten möchten, dann gehen Sie wie in dem folgenden Beispiel vor:
+
+.Beispiel
+
+Die Unterlagen der Vorlesung 01 finden Sie auf
+https://github.com/sebastianstigler/testing_und_debugging/archive/vorlesung01.zip
+
+Tippen Sie in der virtuellen Maschine:
+
+  cd /home/user/project
+  wget -O vorlesung01.zip https://github.com/sebastianstigler/testing_und_debugging/archive/vorlesung01.zip
+  unzip vorlesung01.zip
+  cd vorlesung01
+  ipython notebook --ip=*
+
+IPython hat nun die Webanwendung gestartet. Sie können nun im Browser auf Ihrem
+Hostsystem die Adresse http://127.0.0.1:8888 aufrufen um die, aus der
+Vorlesung bekannte Webanwendung zu benutzen.
+
+Zum beenden der IPython Sitzung schließen Sie den Browser und beenden Sie in
+der virtuellen Maschine mit Strg-C den IPython Server.
+
+Datenschutz
+-----------
+
+Die für die Anmeldedaten bei github wird in der Datei '/home/user/.gistsrc'
+lediglich der Anmeldename und ein Hashtoken gespeichert. Wenn Sie diese Datei
+löschen werden Sie beim nächsten Aufruf von 'submit' erneut nach den
+Anmeldedaten gefragt.
+
+Ihre Lösung wird gpg-verschlüsselt in Ihrem github Account als sogenanntes gist
+gespeichert.
+
+Bewertet wird die jeweils letzte Version, die innerhalb des Abgabezeitraums
+dort gespeichert wird.
+
+Fragen?
+-------
+
+Fragen können Sie via Twitter https://twitter.com/s_stigler_htw oder per Email
+sebastian.stigler@htw-aalen.de mit dem Betreff 'Testing und Debugging Frage'
+stellen.

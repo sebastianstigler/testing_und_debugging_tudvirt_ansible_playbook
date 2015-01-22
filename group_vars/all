@@ -1,0 +1,23 @@
+---
+vm_user: user
+vm_group: user
+
+semester: SoSe15
+vm_hostname: "TuDvirt-{{ semester }}"
+
+install_state: present
+
+logfile: /var/log/ansible.log
+
+submit_command: submit
+#submit_command: submit-offline
+
+
+ansible_playbook_host: github.com
+ansible_playbook_repo: "git://{{ ansible_playbook_host }}/sebastianstigler/testing_und_debugging_tudvirt_ansible_playbook.git"
+ansible_playbook_dest: /var/lib/ansible/local
+
+ansible_playbook_host_alt: "192.168.122.1"
+ansible_playbook_repo_alt: "git://{{ ansible_playbook_host_alt }}/htw-aalen/vorlesung/tudvirt-ansible-playbook"
+ansible_playbook_dest_alt: "{{ ansible_playbook_dest }}"
+

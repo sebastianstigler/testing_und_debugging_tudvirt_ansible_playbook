@@ -1,0 +1,129 @@
+#!/bin/bash
+# vim: ft=sh:tw=80:ts=4:sta:sw=4:si:ci
+#************************************************************** SHELL SCRIPT ***
+#   NAME
+#       update_vm -- Tool to update the programms in the vm
+#
+#   DESCRIPTION
+#       Download an ansible playbook for this vm and run it.
+#
+#   FIRST RELEASE
+#       2015-01-20  Sebastian Stigler		sebastian.stigler@htw-aalen.de
+#
+#   COPYRIGHT (C) 2015
+#*******************************************************************************
+#** function usage
+
+usage() {
+    echo "USAGE: `basename $0` [-h|--help] [-v]"
+    exit 1
+}
+
+#*******************************************************************************
+#** usage verification
+
+TEMP=$(getopt -o hv --long help  -n 'update_vm' -- "$@")
+
+VERBOSE=""
+
+if [ ${?} != 0 ] ; then usage; fi
+
+eval set -- "${TEMP}"
+
+while true ; do
+    case "${1}" in
+        -h|--help)   usage                            ; shift   ;;
+        -v)          VERBOSE="v${VERBOSE}"            ; shift   ;;
+        --)          shift                            ; break   ;;
+         *)          echo "Internal error!"           ; exit 1  ;;
+    esac
+done
+
+[ "x${VERBOSE}" != "x" ] && VERBOSE="-${VERBOSE}"
+
+
+#*******************************************************************************
+#** Set some variables
+
+PINGHOST="{{ ansible_playbook_host }}"
+REPO="{{ ansible_playbook_repo }}"
+DEST="{{ ansible_playbook_dest }}"
+
+[ -f /root/.update_vm.cfg ] &&  source /root/.update_vm.cfg
+
+
+#*******************************************************************************
+#** check root
+check_root() {
+if [ "$EUID" -ne 0 ]
+  then echo -e "\e[31mYou must run this command as root (with 'sudo')!\e[0m"
+  usage
+  exit
+fi
+}
+
+#*******************************************************************************
+#** check run in vm
+check_run_in_vm() {
+if [ ! -f '/opt/gists/setup.py' ]
+  then echo -e "\e[31mYou must call this command within the virtual machine!\e[0m"
+  exit
+fi
+}
+
+#*******************************************************************************
+#** check internet
+check_internet() {
+if ! ping -c1 ${PINGHOST} &> /dev/null
+  then echo -e "\e[31mYou need a working internet connection within the virtual machine!\e[0m"
+  exit
+fi
+}
+
+#*******************************************************************************
+#** check ssh key
+check_ssh_key() {
+if ! grep -q "${PINGHOST}" /root/.ssh/known_hosts
+  then ssh-keyscan ${PINGHOST} >> /root/.ssh/known_hosts 2>/dev/null
+fi
+}
+
+#*******************************************************************************
+#** get playbook
+get_playbook() {
+if ! ansible virt -m git -a "repo=${REPO} dest=${DEST}" ${VERBOSE}
+  then exit
+fi
+}
+
+#*******************************************************************************
+#** run playbook
+run_playbook() {
+cd ${DEST}
+ansible-playbook local.yml ${VERBOSE}
+}
+
+#*******************************************************************************
+#** start main program
+
+echo -e "\e[33mcheck_root\e[0m"
+check_root
+echo -e "\e[33mcheck_run_in_vm\e[0m"
+check_run_in_vm
+echo -e "\e[33mcheck_internet\e[0m"
+check_internet
+echo -e "\e[33mcheck_ssh_key\e[0m"
+check_ssh_key
+echo -e "\e[33mget_playbook\e[0m"
+get_playbook
+echo -e "\e[33mrun_playbook\e[0m"
+run_playbook
+
+
+#*******************************************************************************
+#** clean up
+#
+#    rm -f /tmp/vmpatch01.sh.$$.log
+#
+#*********************************************************************** END ***
+

@@ -1,0 +1,26 @@
+---
+- name: Get adapted version of gists
+  git: repo=git://github.com/sebastianstigler/gists.git dest=/opt/gists/
+    version=python3
+  register: result
+
+- name: Install gists
+  shell: python3 setup.py install chdir=/opt/gists
+  when: result.changed
+
+- name: Get submit command
+  git: repo=git://github.com/sebastianstigler/testing_und_debugging_submit.git
+    dest=/opt/submit/
+
+- name: Install submit command
+  file: src=/opt/submit/{{ submit_command }} dest=/usr/local/bin/submit state=link
+
+- name: Create directory for gpg key
+  file: path=/opt/gpg state=directory
+
+- name: Get gpg key
+  copy: src=htw.asc dest=/opt/gpg/htw.asc
+
+- name: Install gpg key
+  shell: su -c "gpg --import /opt/gpg/htw.asc" - {{ vm_user }}
+

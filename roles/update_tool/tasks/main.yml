@@ -1,0 +1,6 @@
+---
+- name: Install update script
+  template: src=update_vm.j2 dest=/usr/local/bin/update_vm mode=0755
+
+- name: Install config file for the update script
+  template: src=update_vm.cfg.j2 dest=/root/.update_vm.cfg_

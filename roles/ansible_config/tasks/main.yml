@@ -1,0 +1,6 @@
+---
+- name: Copy ansible config file
+  template: src=ansible.cfg.j2 dest=/root/.ansible.cfg
+
+- name: Create logrotate entry for ansible
+  template: src=ansible_logrotate.j2 dest=/etc/logrotate.d/ansible

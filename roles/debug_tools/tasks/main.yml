@@ -1,0 +1,32 @@
+---
+- name: Install packages for debug tools
+  apt: name={{ item }} state={{ install_state }}
+  with_items:
+    - gdb
+    - valgrind
+    - splint
+    - splint-doc-html
+    - strace
+
+- name: Preconfig gdb mammon extention
+  copy: src=gdbinit dest=/home/{{ vm_user }}/.gdbinit_
+    owner={{ vm_user }} group={{ vm_group }}
+
+- name: Allow the vm_user to attache to a running process with gdb
+  copy: src=60-ptrace.conf dest=/etc/sysctl.d/60-ptrace.conf
+
+- name: Unpack lcov tool (patched version for ubuntu)
+  unarchive: src=lcov.tgz dest=/opt/ creates=/opt/lcov/bin/lcov
+
+- name: Install lcov tool
+  shell: make install chdir=/opt/lcov/ creates=/usr/bin/lcov
+
+- name: Config lcov tool
+  copy: src=lcovrc dest=/home/{{ vm_user }}/.lcovrc
+    owner={{ vm_user }} group={{ vm_group }}
+
+- name: Install Python debug tools
+  pip: executable=pip3 name={{ item }} state={{ install_state }}
+  with_items:
+    - coverage
+    - pylint

@@ -1,0 +1,19 @@
+---
+- name: install tudvirt vm for Testing und Debugging lecture
+  hosts: virt
+  user: root
+
+  roles: 
+    - common
+    - ansible_config
+    - java
+    - python3
+    - debug_tools
+    - ipython
+    - webserver
+    - submit_tool
+    - update_tool
+
+  post_tasks:
+    - name: Cleanup packages
+      shell: /usr/bin/apt-get clean

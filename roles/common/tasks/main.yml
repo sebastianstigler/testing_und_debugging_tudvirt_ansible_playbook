@@ -1,0 +1,29 @@
+---
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Install base packages
+  apt: name={{ item }} state={{ install_state }}
+  with_items:
+    - zip
+    - vim
+    - cscope
+    - exuberant-ctags
+    - dos2unix
+    - man-db
+    - bash-completion
+    - language-pack-de
+    - language-pack-de-base
+    - aptitude
+
+- name: Config vim
+  copy: src=vimrc dest=/home/{{ vm_user }}/.vimrc
+    owner={{ vm_user }} group={{ vm_group }}
+
+- name: Set hostname
+  template: src=hostname.j2 dest=/etc/hostname
+  notify: Restart hostname service
+
+- name: Set keyboard
+  copy: src=keyboard dest=/etc/default/keyboard
+  notify: Reconfigure keyboard
