@@ -1,7 +1,7 @@
 ---
 - name: Restart hostname service
   service: name=hostname state=restarted
-
+  when: initial_run is not defined
 
 - name: Reconfigure keyboard
   shell: "{{ item }}"
