@@ -91,6 +91,7 @@ fi
 #*******************************************************************************
 #** get playbook
 get_playbook() {
+(cd ${DEST}; git remote set-url origin ${REPO})
 if ! ansible virt -m git -a "repo=${REPO} dest=${DEST}" ${VERBOSE}
   then exit
 fi
