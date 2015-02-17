@@ -13,4 +13,7 @@
   with_items:
     - tornado
     - pyzmq
+    - jsonshema
+    - mistune
+    - mock
     - ipython[notebook]
