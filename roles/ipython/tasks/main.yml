@@ -16,4 +16,5 @@
     - jsonschema
     - mistune
     - mock
+    - terminado
     - ipython[notebook]
