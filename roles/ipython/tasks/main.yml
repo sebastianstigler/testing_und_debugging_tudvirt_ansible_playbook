@@ -18,3 +18,19 @@
     - mock
     - terminado
     - ipython[notebook]
+
+- name: Create config directory for Ipython 
+  file:
+    path=/home/{{ vm_user }}/.ipython/profile_default/
+    state=directory
+    mode=0755
+    owner={{ vm_user }}
+    group={{ vm_group }}
+
+- name: Install configfile for Ipython Notebook
+  copy:
+    src=ipython_notebook_config.py
+    dest=/home/{{ vm_user }}/.ipython/profile_default/ipython_notebook_config.py
+    mode=0644
+    owner={{ vm_user }}
+    group={{ vm_group }}
