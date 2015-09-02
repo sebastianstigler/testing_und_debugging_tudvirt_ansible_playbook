@@ -8,6 +8,12 @@
     - libsqlite3-dev
     - libcurl4-openssl-dev
 
+- name: Update setuptools and pip
+  pip: name={{ item }} state=latest
+  with_items:
+    - setuptools
+    - pip
+
 - name: Install necessary pip packages for IPython
   pip: name={{ item }} state={{ install_state }}
   with_items:
@@ -18,6 +24,7 @@
     - mock
     - terminado
     - ipython[notebook]
+    - jupyter
 
 - name: Create config directory for Ipython 
   file:
