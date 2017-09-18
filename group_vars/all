@@ -1,8 +1,8 @@
 ---
-vm_user: user
-vm_group: user
+vm_user: ubuntu
+vm_group: ubuntu
 
-semester: SoSe15
+semester: WiSe1718
 vm_hostname: "TuDvirt-{{ semester }}"
 
 install_state: present
