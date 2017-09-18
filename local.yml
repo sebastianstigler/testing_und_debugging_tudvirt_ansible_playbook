@@ -9,7 +9,7 @@
     - java
     - python3
     - debug_tools
-    - ipython
+    #    - ipython
     - webserver
     - submit_tool
     - update_tool
