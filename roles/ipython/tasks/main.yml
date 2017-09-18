@@ -1,34 +1,21 @@
 ---
-- name: Install necessary apt packages for IPython
-  apt: name={{ item }} state={{ install_state }}
-  with_items:
-    - zlib1g-dev
-    - libzmq-dev
-    - sqlite3
-    - libsqlite3-dev
-    - libcurl4-openssl-dev
 
 - name: Update setuptools and pip
-  pip: name={{ item }} state=latest
+  pip: name={{ item }} state=latest executable=pip3
   with_items:
     - setuptools
-    - pip
+
+- name: Install configfile for Ipython Notebook
+  copy:
+    src=requirements3.txt
+    dest=/tmp/requirements3.txt
 
 - name: Install necessary pip packages for IPython
-  pip: name={{ item }} state={{ install_state }}
-  with_items:
-    - tornado
-    - pyzmq
-    - jsonschema
-    - mistune
-    - mock
-    - terminado
-    - ipython[notebook]
-    - jupyter
+  pip: requirements=/tmp/requirements3.txt state={{ install_state }} executable=pip3
 
 - name: Create config directory for Ipython 
   file:
-    path=/home/{{ vm_user }}/.ipython/profile_default/
+    path=/home/{{ vm_user }}/.jupyter/
     state=directory
     mode=0755
     owner={{ vm_user }}
@@ -36,8 +23,8 @@
 
 - name: Install configfile for Ipython Notebook
   copy:
-    src=ipython_notebook_config.py
-    dest=/home/{{ vm_user }}/.ipython/profile_default/ipython_notebook_config.py
+    src=jupyter_notebook_config.py
+    dest=/home/{{ vm_user }}/.jupyter/jupyter_notebook_config.py
     mode=0644
     owner={{ vm_user }}
     group={{ vm_group }}
