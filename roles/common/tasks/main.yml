@@ -33,3 +33,12 @@
 - name: Set keyboard
   copy: src=keyboard dest=/etc/default/keyboard
   notify: Reconfigure keyboard
+
+- name: Set Timezone
+  timezone: name={{ timezone }}
+
+- name: Create Locale
+  locale_gen: name={{ locale }}
+
+- name: set locale
+  command: /usr/sbin/update-locale LANG={{ locale }} LC_ALL=$locale

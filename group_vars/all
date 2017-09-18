@@ -5,6 +5,9 @@ vm_group: ubuntu
 semester: WiSe1718
 vm_hostname: "TuDvirt-{{ semester }}"
 
+timezone: Europe/Berlin
+locale: de_DE.UTF-8
+
 install_state: present
 
 logfile: /var/log/ansible.log
