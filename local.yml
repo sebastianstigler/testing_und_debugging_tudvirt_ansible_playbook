@@ -16,7 +16,7 @@
 
   post_tasks:
     - name: Cleanup packages
-      shell: /usr/bin/apt-get {item
+      shell: /usr/bin/apt-get {{item}}
       with_items:
         - clean
         - autoclean
