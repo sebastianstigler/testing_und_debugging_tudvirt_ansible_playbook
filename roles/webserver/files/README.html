@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.6.6" />
+<meta name="generator" content="AsciiDoc 8.6.9" />
 <title>Hinweise zum Arbeiten in der virtuellen Maschine</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -87,9 +87,15 @@ ul, ol, li > p {
 ul > li     { color: #aaa; }
 ul > li > * { color: black; }
 
-pre {
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
   padding: 0;
   margin: 0;
+}
+pre {
+  white-space: pre-wrap;
 }
 
 #author {
@@ -219,7 +225,7 @@ div.exampleblock > div.content {
 }
 
 div.imageblock div.content { padding-left: 0; }
-span.image img { border-style: none; }
+span.image img { border-style: none; vertical-align: text-bottom; }
 a.image:visited { color: white; }
 
 dl {
@@ -349,7 +355,7 @@ div.colist td img {
   margin-bottom: 0.1em;
 }
 
-div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -407,17 +413,13 @@ span.underline { text-decoration: underline; }
 span.overline { text-decoration: overline; }
 span.line-through { text-decoration: line-through; }
 
+div.unbreakable { page-break-inside: avoid; }
+
 
 /*
  * xhtml11 specific
  *
  * */
-
-tt {
-  font-family: monospace;
-  font-size: inherit;
-  color: navy;
-}
 
 div.tableblock {
   margin-top: 1.0em;
@@ -451,12 +453,6 @@ div.tableblock > table[frame="vsides"] {
  * html5 specific
  *
  * */
-
-.monospaced {
-  font-family: monospace;
-  font-size: inherit;
-  color: navy;
-}
 
 table.tableblock {
   margin-top: 1.0em;
@@ -537,6 +533,8 @@ body.manpage div.sectionbody {
 @media print {
   body.manpage div#toc { display: none; }
 }
+
+
 </style>
 <script type="text/javascript">
 /*<![CDATA[*/
@@ -581,7 +579,7 @@ toc: function (toclevels) {
 
   function tocEntries(el, toclevels) {
     var result = new Array;
-    var re = new RegExp('[hH]([2-'+(toclevels+1)+'])');
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
     // Function that scans the DOM tree for header elements (the DOM2
     // nodeIterator API would be a better technique but not supported by all
     // browsers).
@@ -610,7 +608,7 @@ toc: function (toclevels) {
   var i;
   for (i = 0; i < toc.childNodes.length; i++) {
     var entry = toc.childNodes[i];
-    if (entry.nodeName == 'div'
+    if (entry.nodeName.toLowerCase() == 'div'
      && entry.getAttribute("class")
      && entry.getAttribute("class").match(/^toclevel/))
       tocEntriesToRemove.push(entry);
@@ -656,7 +654,7 @@ footnotes: function () {
   var entriesToRemove = [];
   for (i = 0; i < noteholder.childNodes.length; i++) {
     var entry = noteholder.childNodes[i];
-    if (entry.nodeName == 'div' && entry.getAttribute("class") == "footnote")
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
       entriesToRemove.push(entry);
   }
   for (i = 0; i < entriesToRemove.length; i++) {
@@ -741,30 +739,18 @@ asciidoc.install();
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph"><p>Sorgen Sie dafür, dass all Ihre Arbeiten in einem Unterverzeichnis von
-<em>/home/user/project</em> stattfinden, da dieses Verzeichnis per Browser
-außerhalb der virtuellen Maschine via <a href="http://127.0.0.1:8001/project/">http://127.0.0.1:8001/project/</a> zugänglich
+<em>/home/ubuntu/project</em> stattfinden, da dieses Verzeichnis per Browser
+außerhalb der virtuellen Maschine via <a href="/project/">/project/</a> zugänglich
 ist.</p></div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_herunterladen_der_übungsaufgaben">Herunterladen der Übungsaufgaben</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Sie können die Aufgabenstellungen direkt mit dem <em>wget</em> Befehl von der, auf
-Twitter angegebenen Webseite, herunterladen. Hilfe zu wget erhalten Sie per:</p></div>
-<div class="literalblock">
-<div class="content">
-<pre><tt>man wget</tt></pre>
-</div></div>
-<div class="paragraph"><div class="title">Beispiel:</div><p>Die Übung 01 liegt auf
-<a href="https://github.com/sebastianstigler/testing_und_debugging/archive/uebung01.zip">https://github.com/sebastianstigler/testing_und_debugging/archive/uebung01.zip</a></p></div>
-<div class="paragraph"><p>Dann tippen Sie in der virtuellen Maschine:</p></div>
-<div class="literalblock">
-<div class="content">
-<pre><tt>cd /home/user/project
-wget -O uebung01.zip https://github.com/sebastianstigler/testing_und_debugging/archive/uebung01.zip
-unzip uebung01.zip
-cd uebung01</tt></pre>
-</div></div>
+<div class="paragraph"><p>Sie können die Aufgabenstellungen als zip Datei auf der Kursseite
+<a href="https://moodle.htw-aalen.de/course/view.php?id=1448">https://moodle.htw-aalen.de/course/view.php?id=1448</a> herunterladen und mit
+Winscp auf die virtuelle Maschine ins Verzeichnis <code>/home/ubuntu/project</code>
+kopieren. Dort können Sie die Datei mit dem Kommando <code>unzip</code> entpacken.</p></div>
 </div>
 </div>
 <div class="sect1">
@@ -775,13 +761,13 @@ bearbeiten.  Es muss nur ein Exemplar Ihrer Übung pro Gruppe abgegeben werden!<
 <div class="paragraph"><p>Bearbeiten Sie die Übungsaufgabe so, wie es in der pdf Datei angegeben ist.</p></div>
 <div class="paragraph"><p>Vor der ersten Abgabe legen Sie sich auf <a href="https://github.com">https://github.com</a> einen Account an.</p></div>
 <div class="paragraph"><p>Mailen Sie den Anmeldename (nicht das Passwort), sowie die Namen und
-Matrikelnummern Ihrer Gruppenmitglieder an <a href="mailto:sebastian.stigler@htw-aalen.de">sebastian.stigler@htw-aalen.de</a> mit
+Matrikelnummern Ihrer Gruppenmitglieder an <a href="mailto:sebastian.stigler@hs-aalen.de">sebastian.stigler@hs-aalen.de</a> mit
 dem Betreff: <em>Testing und Debugging Github Account</em></p></div>
 <div class="paragraph"><p>Zum Abgeben wechseln Sie in das Verzeichnis der Übung, in der sich die Datei
 <em>submit.cfg</em> befindet. Tippen Sie nun den Befehl</p></div>
 <div class="literalblock">
 <div class="content">
-<pre><tt>submit</tt></pre>
+<pre><code>submit</code></pre>
 </div></div>
 <div class="paragraph"><p>ein.</p></div>
 <div class="paragraph"><p>Beim erstmaligen Aufrufen werden Sie nach Ihren Anmeldedaten bei github
@@ -789,20 +775,30 @@ gefragt.</p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ipython">IPython</h2>
+<h2 id="_ipython_jupyter">IPython / Jupyter</h2>
 <div class="sectionbody">
+<div class="dlist"><dl>
+<dt class="hdlist1">
+note
+</dt>
+<dd>
+<p>
+Die Webkonsole von IPython wurde in Jupyter umbenannt.
+</p>
+</dd>
+</dl></div>
 <div class="paragraph"><p>Wenn Sie  die interaktiven Beispiele aus der Vorlesung noch einmal selbst
 durcharbeiten möchten, dann gehen Sie wie in dem folgenden Beispiel vor:</p></div>
-<div class="paragraph"><div class="title">Beispiel</div><p>Die Unterlagen der Vorlesung 01 finden Sie auf
-<a href="https://github.com/sebastianstigler/testing_und_debugging/archive/vorlesung01.zip">https://github.com/sebastianstigler/testing_und_debugging/archive/vorlesung01.zip</a></p></div>
+<div class="paragraph"><div class="title">Beispiel</div><p>Die Unterlagen der Vorlesung 01 finden Sie ebenfalls auf der Kursseite (siehe
+oben). Laden Sie sich die zip Datei herunter und via Winscp auf die virtuelle
+Maschine.</p></div>
 <div class="paragraph"><p>Tippen Sie in der virtuellen Maschine:</p></div>
 <div class="literalblock">
 <div class="content">
-<pre><tt>cd /home/user/project
-wget -O vorlesung01.zip https://github.com/sebastianstigler/testing_und_debugging/archive/vorlesung01.zip
+<pre><code>cd /home/user/project
 unzip vorlesung01.zip
 cd vorlesung01
-ipython notebook --ip=*</tt></pre>
+ipython notebook</code></pre>
 </div></div>
 <div class="paragraph"><p>IPython hat nun die Webanwendung gestartet. Sie können nun im Browser auf Ihrem
 Hostsystem die Adresse <a href="http://127.0.0.1:8888">http://127.0.0.1:8888</a> aufrufen um die, aus der
@@ -814,7 +810,7 @@ der virtuellen Maschine mit Strg-C den IPython Server.</p></div>
 <div class="sect1">
 <h2 id="_datenschutz">Datenschutz</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Die für die Anmeldedaten bei github wird in der Datei <em>/home/user/.gistsrc</em>
+<div class="paragraph"><p>Die für die Anmeldedaten bei github wird in der Datei <em>/home/ubuntu/.gistsrc</em>
 lediglich der Anmeldename und ein Hashtoken gespeichert. Wenn Sie diese Datei
 löschen werden Sie beim nächsten Aufruf von <em>submit</em> erneut nach den
 Anmeldedaten gefragt.</p></div>
@@ -828,7 +824,7 @@ dort gespeichert wird.</p></div>
 <h2 id="_fragen">Fragen?</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Fragen können Sie via Twitter <a href="https://twitter.com/s_stigler_htw">https://twitter.com/s_stigler_htw</a> oder per Email
-<a href="mailto:sebastian.stigler@htw-aalen.de">sebastian.stigler@htw-aalen.de</a> mit dem Betreff <em>Testing und Debugging Frage</em>
+<a href="mailto:sebastian.stigler@hs-aalen.de">sebastian.stigler@hs-aalen.de</a> mit dem Betreff <em>Testing und Debugging Frage</em>
 stellen.</p></div>
 </div>
 </div>
@@ -836,7 +832,8 @@ stellen.</p></div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-01-20 14:28:49 CET
+Last updated
+ 2017-09-19 14:26:19 CEST
 </div>
 </div>
 </body>

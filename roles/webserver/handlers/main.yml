@@ -1,4 +1,3 @@
 ---
-- name: Reload apache config
-  service: name=apache2 state=reloaded
-  when: initial_run is not defined
+- name: Reload nginx config
+  service: name=nginx state=reloaded
