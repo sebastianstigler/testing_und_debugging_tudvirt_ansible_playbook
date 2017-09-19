@@ -41,4 +41,4 @@
   locale_gen: name={{ locale }}
 
 - name: set locale
-  command: /usr/sbin/update-locale LANG={{ locale }} LC_ALL=$locale
+  command: /usr/sbin/update-locale LANG={{ locale }}
