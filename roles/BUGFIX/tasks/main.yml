@@ -29,7 +29,7 @@
 - name: set password abc123
   user:
     name: ubuntu
-    password: $6$h3w.AmF5Da9BSxe$HUo9B/HTyzChd82jOq9LmVkelbNWkhsMJabeV82VvjaFVjw7xWS.6uXaHHi3SmKez3NCWxBQOPH/fDCi/L3MT0
+    password: '$6$h3w.AmF5Da9BSxe$HUo9B/HTyzChd82jOq9LmVkelbNWkhsMJabeV82VvjaFVjw7xWS.6uXaHHi3SmKez3NCWxBQOPH/fDCi/L3MT0'
     update_password: always
 
 # allow password for ssh
