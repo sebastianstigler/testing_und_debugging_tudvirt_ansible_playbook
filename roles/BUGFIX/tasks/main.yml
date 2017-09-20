@@ -1,0 +1,40 @@
+---
+
+# remove cloud-init
+
+- name: deactivate cloud-init part 1/2
+  lineinfile:
+    path: /etc/cloud/cloud.cfg.d/90_dpkg.cfg
+    regex: '^datasource_list'
+    line : 'datasource_list: [ None ]'
+
+- name: deactivate cloud-init part 2/2
+  shell: dpkg-reconfigure -f noninteractive cloud-init
+
+# set kernel commandlineoption
+
+- name: no ttyS0 in kernel-parameters
+  lineinfile:
+    path: "{{item}}"
+    regex: '^GRUB_CMDLINE_LINUX_DEFAULT='
+    line: 'GRUB_CMDLINE_LINUX_DEFAULT="console=tty1 nomodeset'
+  with_items:
+    - /etc/default/grub
+    - /etc/default/grub.d/50-cloudimg-settings.cfg
+
+- name: update-grub
+  shell: update-grub
+
+# set password for vm_user
+- name: set password abc123
+  user:
+    name: ubuntu
+    password: $6$h3w.AmF5Da9BSxe$HUo9B/HTyzChd82jOq9LmVkelbNWkhsMJabeV82VvjaFVjw7xWS.6uXaHHi3SmKez3NCWxBQOPH/fDCi/L3MT0
+    update_password: always
+
+# allow password for ssh
+- name: allow password for ssh
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regex: '^PasswordAuthentication'
+    line: 'PasswordAuthentication yes'

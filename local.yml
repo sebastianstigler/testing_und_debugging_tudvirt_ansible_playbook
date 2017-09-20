@@ -13,6 +13,7 @@
     - webserver
     - submit_tool
     - update_tool
+    - BUGFIX
 
   post_tasks:
     - name: Cleanup packages
