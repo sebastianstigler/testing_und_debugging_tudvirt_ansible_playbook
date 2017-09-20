@@ -5,7 +5,7 @@
 - name: deactivate cloud-init part 1/2
   lineinfile:
     path: /etc/cloud/cloud.cfg.d/90_dpkg.cfg
-    regex: '^datasource_list'
+    regexp: '^datasource_list'
     line : 'datasource_list: [ None ]'
 
 - name: deactivate cloud-init part 2/2
@@ -16,7 +16,7 @@
 - name: no ttyS0 in kernel-parameters
   lineinfile:
     path: "{{item}}"
-    regex: '^GRUB_CMDLINE_LINUX_DEFAULT='
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
     line: 'GRUB_CMDLINE_LINUX_DEFAULT="console=tty1 nomodeset'
   with_items:
     - /etc/default/grub
@@ -36,5 +36,5 @@
 - name: allow password for ssh
   lineinfile:
     path: /etc/ssh/sshd_config
-    regex: '^PasswordAuthentication'
+    regexp: '^PasswordAuthentication'
     line: 'PasswordAuthentication yes'
