@@ -11,7 +11,7 @@
     owner={{ vm_user }} group={{ vm_group }}
 
 - name: Install index.html
-  copy: src=README.html dest=/var/www/index.html
+  copy: src=README.html dest=/var/www/html/index.html
     owner=www-data group=www-data
 
 - name: Install README in root directory
