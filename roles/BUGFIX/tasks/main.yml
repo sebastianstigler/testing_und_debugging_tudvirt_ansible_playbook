@@ -11,6 +11,9 @@
 - name: deactivate cloud-init part 2/2
   shell: dpkg-reconfigure -f noninteractive cloud-init
 
+- name: deactivate cloud-init
+  file: path=/etc/cloud/cloud-init.disabled state=touch
+
 # set kernel commandlineoption
 
 - name: no ttyS0 in kernel-parameters
@@ -32,12 +35,8 @@
     password: '$6$h3w.AmF5Da9BSxe$HUo9B/HTyzChd82jOq9LmVkelbNWkhsMJabeV82VvjaFVjw7xWS.6uXaHHi3SmKez3NCWxBQOPH/fDCi/L3MT0'
     update_password: always
 
-# some wired bug sets the first password to disabled so do it again
-- name: set password abc123 again
-  user:
-    name: ubuntu
-    password: '$6$h3w.AmF5Da9BSxe$HUo9B/HTyzChd82jOq9LmVkelbNWkhsMJabeV82VvjaFVjw7xWS.6uXaHHi3SmKez3NCWxBQOPH/fDCi/L3MT0'
-    update_password: always
+- name: activate password
+  shell: usermod -U ubuntu
 
 # allow password for ssh
 - name: allow password for ssh
