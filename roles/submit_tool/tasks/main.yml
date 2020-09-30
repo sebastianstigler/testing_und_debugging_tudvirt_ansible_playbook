@@ -1,12 +1,18 @@
 ---
-- name: Get adapted version of gists
-  git: repo=git://github.com/sebastianstigler/gists.git dest=/opt/gists/
-    version=python3
-  register: result
+- name: Get key for gh cli repo
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: C99B11DEB97541F0
 
-- name: Install gists
-  shell: python3 setup.py install chdir=/opt/gists
-  when: result.changed
+- name: Get repo for gh cli
+  apt_repository:
+    repo: deb https://cli.github.com/packages bionic main
+    state: present
+
+- name: Install gh cli
+  apt:
+    name: gh
+    update_cache: yes
 
 - name: Get submit command
   git: repo=git://github.com/sebastianstigler/testing_und_debugging_submit.git

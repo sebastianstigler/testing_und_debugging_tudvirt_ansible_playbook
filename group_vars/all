@@ -1,8 +1,8 @@
 ---
-vm_user: ubuntu
-vm_group: ubuntu
+vm_user: vagrant
+vm_group: vagrant
 
-semester: WiSe1718
+semester: WiSe2021
 vm_hostname: "TuDvirt-{{ semester }}"
 
 timezone: Europe/Berlin
