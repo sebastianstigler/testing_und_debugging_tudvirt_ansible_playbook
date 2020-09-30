@@ -1,88 +1,100 @@
-Hinweise zum Arbeiten in der virtuellen Maschine
-================================================
-
 Sorgen Sie dafür, dass all Ihre Arbeiten in einem Unterverzeichnis von
-'/home/ubuntu/project' stattfinden, da dieses Verzeichnis per Browser
-außerhalb der virtuellen Maschine via link:/project/[] zugänglich
-ist.
+/home/vagrant/project stattfinden, da dieses Verzeichnis per Browser
+außerhalb der virtuellen Maschine via /project/ zugänglich ist.
 
-Herunterladen der Übungsaufgaben
---------------------------------
 
-Sie können die Aufgabenstellungen als zip Datei auf der Kursseite
-https://moodle.htw-aalen.de/course/view.php?id=1448 herunterladen und mit
-Winscp auf die virtuelle Maschine ins Verzeichnis `/home/ubuntu/project`
-kopieren. Dort können Sie die Datei mit dem Kommando `unzip` entpacken.
 
-Abgabe der Übung
-----------------
+HERUNTERLADEN DER ÜBUNGSAUFGABEN
+
+
+Sie können die Aufgabenstellungen als zip Datei auf der Kursseite in
+Canvas herunterladen und mit Winscp bzw. scp auf die virtuelle Maschine
+ins Verzeichnis /home/vagrant/project kopieren. Dort können Sie die
+Datei mit dem Kommando unzip entpacken.
+
+
+
+ABGABE DER ÜBUNG
+
 
 Sie dürfen die Aufgaben in Gruppen von maximal 3 Studenten gemeinsam
-bearbeiten.  Es muss nur ein Exemplar Ihrer Übung pro Gruppe abgegeben werden!
+bearbeiten. Es muss nur ein Exemplar Ihrer Übung pro Gruppe abgegeben
+werden!
 
-Bearbeiten Sie die Übungsaufgabe so, wie es in der pdf Datei angegeben ist.
+Bearbeiten Sie die Übungsaufgabe so, wie es in der PDF Datei angegeben
+ist.
 
-Vor der ersten Abgabe legen Sie sich auf https://github.com einen Account an.
+Die Organisation der Übungsgruppen erfolgt über den Canvas Kurs für
+diese Vorlesung. Registrieren Sie sich dort so, wie es im Wilkommens
+Modul angegeben ist.
 
-Mailen Sie den Anmeldename (nicht das Passwort), sowie die Namen und
-Matrikelnummern Ihrer Gruppenmitglieder an sebastian.stigler@hs-aalen.de mit
-dem Betreff: 'Testing und Debugging Github Account'
+Die Programmieraufgabe muss in der virtuellen Maschine bearbeitet und
+abgegeben werden. Zum Abgeben wechseln Sie in das Verzeichnis der Übung,
+in der sich die Datei submit.cfg befindet. Tippen Sie nun den Befehl
 
-Zum Abgeben wechseln Sie in das Verzeichnis der Übung, in der sich die Datei
-'submit.cfg' befindet. Tippen Sie nun den Befehl
-
-  submit
+    submit
 
 ein.
 
 Beim erstmaligen Aufrufen werden Sie nach Ihren Anmeldedaten bei github
 gefragt.
 
-IPython / Jupyter
------------------
 
-note:: Die Webkonsole von IPython wurde in Jupyter umbenannt.
 
-Wenn Sie  die interaktiven Beispiele aus der Vorlesung noch einmal selbst
+JUPYTER NOTEBOOK
+
+
+Neben _Jupyter Notebook_ ist auch das etwas ausführlicher _Jupyter Lab_
+installiert.
+
+Starten Sie es einfach mit dem Kommando jupyter lab wo sie sonst
+jupyter notebook geschrieben haben.
+
+Wenn Sie die interaktiven Beispiele aus der Vorlesung noch einmal selbst
 durcharbeiten möchten, dann gehen Sie wie in dem folgenden Beispiel vor:
 
-.Beispiel
 
-Die Unterlagen der Vorlesung 01 finden Sie ebenfalls auf der Kursseite (siehe
-oben). Laden Sie sich die zip Datei herunter und via Winscp auf die virtuelle
-Maschine.
+Beispiel
+
+Die Unterlagen der Vorlesung 01 finden Sie ebenfalls auf der Kursseite
+(siehe oben). Laden Sie sich die zip Datei herunter und via Winscp/scp
+auf die virtuelle Maschine.
 
 Tippen Sie in der virtuellen Maschine:
 
-  cd /home/user/project
-  unzip vorlesung01.zip
-  cd vorlesung01
-  ipython notebook
+    cd /home/vagrant/project
+    unzip vorlesung01.zip
+    cd vorlesung01
+    jupyter notebook
 
-IPython hat nun die Webanwendung gestartet. Sie können nun im Browser auf Ihrem
-Hostsystem die Adresse http://127.0.0.1:8888 aufrufen um die, aus der
-Vorlesung bekannte Webanwendung zu benutzen.
+Jupyter Notebook ist nun als Webanwendung gestartet. Sie können nun im
+Browser auf Ihrem Hostsystem die Adresse http://127.0.0.1:8888 aufrufen
+um die, aus der Vorlesung bekannte Webanwendung zu benutzen.
 
-Zum beenden der IPython Sitzung schließen Sie den Browser und beenden Sie in
-der virtuellen Maschine mit Strg-C den IPython Server.
+Zum beenden der Jupyter Notebook Sitzung schließen Sie den Browser und
+beenden Sie in der virtuellen Maschine mit Strg-C den Jupyter Notebook
+Server.
 
-Datenschutz
------------
 
-Die für die Anmeldedaten bei github wird in der Datei '/home/ubuntu/.gistsrc'
-lediglich der Anmeldename und ein Hashtoken gespeichert. Wenn Sie diese Datei
-löschen werden Sie beim nächsten Aufruf von 'submit' erneut nach den
-Anmeldedaten gefragt.
 
-Ihre Lösung wird gpg-verschlüsselt in Ihrem github Account als sogenanntes gist
-gespeichert.
+DATENSCHUTZ
 
-Bewertet wird die jeweils letzte Version, die innerhalb des Abgabezeitraums
-dort gespeichert wird.
 
-Fragen?
--------
+Die für die Anmeldedaten bei github wird in der Datei
+/home/vagrant/.config/gh/hosts.yml lediglich ein Hashtoken gespeichert.
+Wenn Sie diese Datei löschen werden Sie beim nächsten Aufruf von submit
+erneut nach den Anmeldedaten gefragt.
 
-Fragen können Sie via Twitter https://twitter.com/s_stigler_htw oder per Email
-sebastian.stigler@hs-aalen.de mit dem Betreff 'Testing und Debugging Frage'
-stellen.
+Ihre Lösung wird gpg-verschlüsselt in Ihrem github Account als
+sogenanntes gist gespeichert.
+
+Bewertet wird die jeweils letzte Version, die innerhalb des
+Abgabezeitraums dort gespeichert wird.
+
+
+
+FRAGEN?
+
+
+Fragen können Sie per Email an sebastian.stigler@hs-aalen.de mit dem
+Betreff T_esting und Debugging Frage_ stellen.

@@ -1,840 +1,323 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
 <head>
-<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.6.9" />
-<title>Hinweise zum Arbeiten in der virtuellen Maschine</title>
-<style type="text/css">
-/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
-
-/* Default font. */
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sebastian Stigler sebastian.stigler@hs-aalen.de" />
+  <title>Hinweise zum Arbeiten in der virtuellen Maschine</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+html {
+font-size: 100%;
+overflow-y: scroll;
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+}
 body {
-  font-family: Georgia,serif;
+color: #444;
+font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+font-size: 12px;
+line-height: 1.7;
+padding: 1em;
+margin: auto;
+max-width: 42em;
+background: #fefefe;
 }
-
-/* Title font. */
-h1, h2, h3, h4, h5, h6,
-div.title, caption.title,
-thead, p.table.header,
-#toctitle,
-#author, #revnumber, #revdate, #revremark,
-#footer {
-  font-family: Arial,Helvetica,sans-serif;
-}
-
-body {
-  margin: 1em 5% 1em 5%;
-}
-
 a {
-  color: blue;
-  text-decoration: underline;
+color: #0645ad;
+text-decoration: none;
 }
 a:visited {
-  color: fuchsia;
+color: #0b0080;
 }
-
-em {
-  font-style: italic;
-  color: navy;
+a:hover {
+color: #06e;
 }
-
-strong {
-  font-weight: bold;
-  color: #083194;
+a:active {
+color: #faa700;
 }
-
+a:focus {
+outline: thin dotted;
+}
+*::-moz-selection {
+background: rgba(255, 255, 0, 0.3);
+color: #000;
+}
+*::selection {
+background: rgba(255, 255, 0, 0.3);
+color: #000;
+}
+a::-moz-selection {
+background: rgba(255, 255, 0, 0.3);
+color: #0645ad;
+}
+a::selection {
+background: rgba(255, 255, 0, 0.3);
+color: #0645ad;
+}
+p {
+margin: 1em 0;
+}
+img {
+max-width: 100%;
+}
 h1, h2, h3, h4, h5, h6 {
-  color: #527bbd;
-  margin-top: 1.2em;
-  margin-bottom: 0.5em;
-  line-height: 1.3;
+color: #111;
+line-height: 125%;
+margin-top: 2em;
+font-weight: normal;
 }
-
-h1, h2, h3 {
-  border-bottom: 2px solid silver;
+h4, h5, h6 {
+font-weight: bold;
+}
+h1 {
+font-size: 2.5em;
 }
 h2 {
-  padding-top: 0.5em;
+font-size: 2em;
 }
 h3 {
-  float: left;
+font-size: 1.5em;
 }
-h3 + * {
-  clear: left;
+h4 {
+font-size: 1.2em;
 }
 h5 {
-  font-size: 1.0em;
+font-size: 1em;
 }
-
-div.sectionbody {
-  margin-left: 0;
+h6 {
+font-size: 0.9em;
 }
-
+blockquote {
+color: #666666;
+margin: 0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
 hr {
-  border: 1px solid silver;
+display: block;
+height: 2px;
+border: 0;
+border-top: 1px solid #aaa;
+border-bottom: 1px solid #eee;
+margin: 1em 0;
+padding: 0;
 }
-
-p {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-ul, ol, li > p {
-  margin-top: 0;
-}
-ul > li     { color: #aaa; }
-ul > li > * { color: black; }
-
-.monospaced, code, pre {
-  font-family: "Courier New", Courier, monospace;
-  font-size: inherit;
-  color: navy;
-  padding: 0;
-  margin: 0;
+pre, code, kbd, samp {
+color: #000;
+font-family: monospace, monospace;
+_font-family: 'courier new', monospace;
+font-size: 0.98em;
 }
 pre {
-  white-space: pre-wrap;
+white-space: pre;
+white-space: pre-wrap;
+word-wrap: break-word;
 }
-
-#author {
-  color: #527bbd;
-  font-weight: bold;
-  font-size: 1.1em;
+b, strong {
+font-weight: bold;
 }
-#email {
+dfn {
+font-style: italic;
 }
-#revnumber, #revdate, #revremark {
+ins {
+background: #ff9;
+color: #000;
+text-decoration: none;
 }
-
-#footer {
-  font-size: small;
-  border-top: 2px solid silver;
-  padding-top: 0.5em;
-  margin-top: 4.0em;
+mark {
+background: #ff0;
+color: #000;
+font-style: italic;
+font-weight: bold;
 }
-#footer-text {
-  float: left;
-  padding-bottom: 0.5em;
+sub, sup {
+font-size: 75%;
+line-height: 0;
+position: relative;
+vertical-align: baseline;
 }
-#footer-badges {
-  float: right;
-  padding-bottom: 0.5em;
+sup {
+top: -0.5em;
 }
-
-#preamble {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
+sub {
+bottom: -0.25em;
 }
-div.imageblock, div.exampleblock, div.verseblock,
-div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
-div.admonitionblock {
-  margin-top: 1.0em;
-  margin-bottom: 1.5em;
+ul, ol {
+margin: 1em 0;
+padding: 0 0 0 2em;
 }
-div.admonitionblock {
-  margin-top: 2.0em;
-  margin-bottom: 2.0em;
-  margin-right: 10%;
-  color: #606060;
+li p:last-child {
+margin-bottom: 0;
 }
-
-div.content { /* Block element content. */
-  padding: 0;
+ul ul, ol ol {
+margin: .3em 0;
 }
-
-/* Block element titles. */
-div.title, caption.title {
-  color: #527bbd;
-  font-weight: bold;
-  text-align: left;
-  margin-top: 1.0em;
-  margin-bottom: 0.5em;
-}
-div.title + * {
-  margin-top: 0;
-}
-
-td div.title:first-child {
-  margin-top: 0.0em;
-}
-div.content div.title:first-child {
-  margin-top: 0.0em;
-}
-div.content + div.title {
-  margin-top: 0.0em;
-}
-
-div.sidebarblock > div.content {
-  background: #ffffee;
-  border: 1px solid #dddddd;
-  border-left: 4px solid #f0f0f0;
-  padding: 0.5em;
-}
-
-div.listingblock > div.content {
-  border: 1px solid #dddddd;
-  border-left: 5px solid #f0f0f0;
-  background: #f8f8f8;
-  padding: 0.5em;
-}
-
-div.quoteblock, div.verseblock {
-  padding-left: 1.0em;
-  margin-left: 1.0em;
-  margin-right: 10%;
-  border-left: 5px solid #f0f0f0;
-  color: #888;
-}
-
-div.quoteblock > div.attribution {
-  padding-top: 0.5em;
-  text-align: right;
-}
-
-div.verseblock > pre.content {
-  font-family: inherit;
-  font-size: inherit;
-}
-div.verseblock > div.attribution {
-  padding-top: 0.75em;
-  text-align: left;
-}
-/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
-div.verseblock + div.attribution {
-  text-align: left;
-}
-
-div.admonitionblock .icon {
-  vertical-align: top;
-  font-size: 1.1em;
-  font-weight: bold;
-  text-decoration: underline;
-  color: #527bbd;
-  padding-right: 0.5em;
-}
-div.admonitionblock td.content {
-  padding-left: 0.5em;
-  border-left: 3px solid #dddddd;
-}
-
-div.exampleblock > div.content {
-  border-left: 3px solid #dddddd;
-  padding-left: 0.5em;
-}
-
-div.imageblock div.content { padding-left: 0; }
-span.image img { border-style: none; vertical-align: text-bottom; }
-a.image:visited { color: white; }
-
 dl {
-  margin-top: 0.8em;
-  margin-bottom: 0.8em;
+margin-bottom: 1em;
 }
 dt {
-  margin-top: 0.5em;
-  margin-bottom: 0;
-  font-style: normal;
-  color: navy;
+font-weight: bold;
+margin-bottom: .8em;
 }
-dd > *:first-child {
-  margin-top: 0.1em;
+dd {
+margin: 0 0 .8em 2em;
 }
-
-ul, ol {
-    list-style-position: outside;
+dd:last-child {
+margin-bottom: 0;
 }
-ol.arabic {
-  list-style-type: decimal;
+img {
+border: 0;
+-ms-interpolation-mode: bicubic;
+vertical-align: middle;
 }
-ol.loweralpha {
-  list-style-type: lower-alpha;
+figure {
+display: block;
+text-align: center;
+margin: 1em 0;
 }
-ol.upperalpha {
-  list-style-type: upper-alpha;
+figure img {
+border: none;
+margin: 0 auto;
 }
-ol.lowerroman {
-  list-style-type: lower-roman;
+figcaption {
+font-size: 0.8em;
+font-style: italic;
+margin: 0 0 .8em;
 }
-ol.upperroman {
-  list-style-type: upper-roman;
+table {
+margin-bottom: 2em;
+border-bottom: 1px solid #ddd;
+border-right: 1px solid #ddd;
+border-spacing: 0;
+border-collapse: collapse;
 }
-
-div.compact ul, div.compact ol,
-div.compact p, div.compact p,
-div.compact div, div.compact div {
-  margin-top: 0.1em;
-  margin-bottom: 0.1em;
+table th {
+padding: .2em 1em;
+background-color: #eee;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
 }
-
-tfoot {
-  font-weight: bold;
+table td {
+padding: .2em 1em;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+vertical-align: top;
 }
-td > div.verse {
-  white-space: pre;
+.author {
+font-size: 1.2em;
+text-align: center;
 }
-
-div.hdlist {
-  margin-top: 0.8em;
-  margin-bottom: 0.8em;
+@media only screen and (min-width: 480px) {
+body {
+font-size: 14px;
 }
-div.hdlist tr {
-  padding-bottom: 15px;
 }
-dt.hdlist1.strong, td.hdlist1.strong {
-  font-weight: bold;
+@media only screen and (min-width: 768px) {
+body {
+font-size: 16px;
 }
-td.hdlist1 {
-  vertical-align: top;
-  font-style: normal;
-  padding-right: 0.8em;
-  color: navy;
 }
-td.hdlist2 {
-  vertical-align: top;
-}
-div.hdlist.compact tr {
-  margin: 0;
-  padding-bottom: 0;
-}
-
-.comment {
-  background: yellow;
-}
-
-.footnote, .footnoteref {
-  font-size: 0.8em;
-}
-
-span.footnote, span.footnoteref {
-  vertical-align: super;
-}
-
-#footnotes {
-  margin: 20px 0 20px 0;
-  padding: 7px 0 0 0;
-}
-
-#footnotes div.footnote {
-  margin: 0 0 5px 0;
-}
-
-#footnotes hr {
-  border: none;
-  border-top: 1px solid silver;
-  height: 1px;
-  text-align: left;
-  margin-left: 0;
-  width: 20%;
-  min-width: 100px;
-}
-
-div.colist td {
-  padding-right: 0.5em;
-  padding-bottom: 0.3em;
-  vertical-align: top;
-}
-div.colist td img {
-  margin-top: 0.3em;
-}
-
 @media print {
-  #footer-badges { display: none; }
+* {
+background: transparent !important;
+color: black !important;
+filter: none !important;
+-ms-filter: none !important;
 }
-
-#toc {
-  margin-bottom: 2.5em;
+body {
+font-size: 12pt;
+max-width: 100%;
 }
-
-#toctitle {
-  color: #527bbd;
-  font-size: 1.1em;
-  font-weight: bold;
-  margin-top: 1.0em;
-  margin-bottom: 0.1em;
+a, a:visited {
+text-decoration: underline;
 }
-
-div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
-  margin-top: 0;
-  margin-bottom: 0;
+hr {
+height: 1px;
+border: 0;
+border-bottom: 1px solid black;
 }
-div.toclevel2 {
-  margin-left: 2em;
-  font-size: 0.9em;
+a[href]:after {
+content: " (" attr(href) ")";
 }
-div.toclevel3 {
-  margin-left: 4em;
-  font-size: 0.9em;
+abbr[title]:after {
+content: " (" attr(title) ")";
 }
-div.toclevel4 {
-  margin-left: 6em;
-  font-size: 0.9em;
+.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+content: "";
 }
-
-span.aqua { color: aqua; }
-span.black { color: black; }
-span.blue { color: blue; }
-span.fuchsia { color: fuchsia; }
-span.gray { color: gray; }
-span.green { color: green; }
-span.lime { color: lime; }
-span.maroon { color: maroon; }
-span.navy { color: navy; }
-span.olive { color: olive; }
-span.purple { color: purple; }
-span.red { color: red; }
-span.silver { color: silver; }
-span.teal { color: teal; }
-span.white { color: white; }
-span.yellow { color: yellow; }
-
-span.aqua-background { background: aqua; }
-span.black-background { background: black; }
-span.blue-background { background: blue; }
-span.fuchsia-background { background: fuchsia; }
-span.gray-background { background: gray; }
-span.green-background { background: green; }
-span.lime-background { background: lime; }
-span.maroon-background { background: maroon; }
-span.navy-background { background: navy; }
-span.olive-background { background: olive; }
-span.purple-background { background: purple; }
-span.red-background { background: red; }
-span.silver-background { background: silver; }
-span.teal-background { background: teal; }
-span.white-background { background: white; }
-span.yellow-background { background: yellow; }
-
-span.big { font-size: 2em; }
-span.small { font-size: 0.6em; }
-
-span.underline { text-decoration: underline; }
-span.overline { text-decoration: overline; }
-span.line-through { text-decoration: line-through; }
-
-div.unbreakable { page-break-inside: avoid; }
-
-
-/*
- * xhtml11 specific
- *
- * */
-
-div.tableblock {
-  margin-top: 1.0em;
-  margin-bottom: 1.5em;
+pre, blockquote {
+border: 1px solid #999;
+padding-right: 1em;
+page-break-inside: avoid;
 }
-div.tableblock > table {
-  border: 3px solid #527bbd;
+tr, img {
+page-break-inside: avoid;
 }
-thead, p.table.header {
-  font-weight: bold;
-  color: #527bbd;
+img {
+max-width: 100% !important;
 }
-p.table {
-  margin-top: 0;
+@page :left {
+margin: 15mm 20mm 15mm 10mm;
 }
-/* Because the table frame attribute is overriden by CSS in most browsers. */
-div.tableblock > table[frame="void"] {
-  border-style: none;
+@page :right {
+margin: 15mm 10mm 15mm 20mm;
 }
-div.tableblock > table[frame="hsides"] {
-  border-left-style: none;
-  border-right-style: none;
+p, h2, h3 {
+orphans: 3;
+widows: 3;
 }
-div.tableblock > table[frame="vsides"] {
-  border-top-style: none;
-  border-bottom-style: none;
+h2, h3 {
+page-break-after: avoid;
 }
-
-
-/*
- * html5 specific
- *
- * */
-
-table.tableblock {
-  margin-top: 1.0em;
-  margin-bottom: 1.5em;
 }
-thead, p.tableblock.header {
-  font-weight: bold;
-  color: #527bbd;
-}
-p.tableblock {
-  margin-top: 0;
-}
-table.tableblock {
-  border-width: 3px;
-  border-spacing: 0px;
-  border-style: solid;
-  border-color: #527bbd;
-  border-collapse: collapse;
-}
-th.tableblock, td.tableblock {
-  border-width: 1px;
-  padding: 4px;
-  border-style: solid;
-  border-color: #527bbd;
-}
-
-table.tableblock.frame-topbot {
-  border-left-style: hidden;
-  border-right-style: hidden;
-}
-table.tableblock.frame-sides {
-  border-top-style: hidden;
-  border-bottom-style: hidden;
-}
-table.tableblock.frame-none {
-  border-style: hidden;
-}
-
-th.tableblock.halign-left, td.tableblock.halign-left {
-  text-align: left;
-}
-th.tableblock.halign-center, td.tableblock.halign-center {
-  text-align: center;
-}
-th.tableblock.halign-right, td.tableblock.halign-right {
-  text-align: right;
-}
-
-th.tableblock.valign-top, td.tableblock.valign-top {
-  vertical-align: top;
-}
-th.tableblock.valign-middle, td.tableblock.valign-middle {
-  vertical-align: middle;
-}
-th.tableblock.valign-bottom, td.tableblock.valign-bottom {
-  vertical-align: bottom;
-}
-
-
-/*
- * manpage specific
- *
- * */
-
-body.manpage h1 {
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  border-top: 2px solid silver;
-  border-bottom: 2px solid silver;
-}
-body.manpage h2 {
-  border-style: none;
-}
-body.manpage div.sectionbody {
-  margin-left: 3em;
-}
-
-@media print {
-  body.manpage div#toc { display: none; }
-}
-
-
 </style>
-<script type="text/javascript">
-/*<![CDATA[*/
-var asciidoc = {  // Namespace.
-
-/////////////////////////////////////////////////////////////////////
-// Table Of Contents generator
-/////////////////////////////////////////////////////////////////////
-
-/* Author: Mihai Bazon, September 2002
- * http://students.infoiasi.ro/~mishoo
- *
- * Table Of Content generator
- * Version: 0.4
- *
- * Feel free to use this script under the terms of the GNU General Public
- * License, as long as you do not remove or alter this notice.
- */
-
- /* modified by Troy D. Hanson, September 2006. License: GPL */
- /* modified by Stuart Rackham, 2006, 2009. License: GPL */
-
-// toclevels = 1..4.
-toc: function (toclevels) {
-
-  function getText(el) {
-    var text = "";
-    for (var i = el.firstChild; i != null; i = i.nextSibling) {
-      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
-        text += i.data;
-      else if (i.firstChild != null)
-        text += getText(i);
-    }
-    return text;
-  }
-
-  function TocEntry(el, text, toclevel) {
-    this.element = el;
-    this.text = text;
-    this.toclevel = toclevel;
-  }
-
-  function tocEntries(el, toclevels) {
-    var result = new Array;
-    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
-    // Function that scans the DOM tree for header elements (the DOM2
-    // nodeIterator API would be a better technique but not supported by all
-    // browsers).
-    var iterate = function (el) {
-      for (var i = el.firstChild; i != null; i = i.nextSibling) {
-        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
-          var mo = re.exec(i.tagName);
-          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
-            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
-          }
-          iterate(i);
-        }
-      }
-    }
-    iterate(el);
-    return result;
-  }
-
-  var toc = document.getElementById("toc");
-  if (!toc) {
-    return;
-  }
-
-  // Delete existing TOC entries in case we're reloading the TOC.
-  var tocEntriesToRemove = [];
-  var i;
-  for (i = 0; i < toc.childNodes.length; i++) {
-    var entry = toc.childNodes[i];
-    if (entry.nodeName.toLowerCase() == 'div'
-     && entry.getAttribute("class")
-     && entry.getAttribute("class").match(/^toclevel/))
-      tocEntriesToRemove.push(entry);
-  }
-  for (i = 0; i < tocEntriesToRemove.length; i++) {
-    toc.removeChild(tocEntriesToRemove[i]);
-  }
-
-  // Rebuild TOC entries.
-  var entries = tocEntries(document.getElementById("content"), toclevels);
-  for (var i = 0; i < entries.length; ++i) {
-    var entry = entries[i];
-    if (entry.element.id == "")
-      entry.element.id = "_toc_" + i;
-    var a = document.createElement("a");
-    a.href = "#" + entry.element.id;
-    a.appendChild(document.createTextNode(entry.text));
-    var div = document.createElement("div");
-    div.appendChild(a);
-    div.className = "toclevel" + entry.toclevel;
-    toc.appendChild(div);
-  }
-  if (entries.length == 0)
-    toc.parentNode.removeChild(toc);
-},
-
-
-/////////////////////////////////////////////////////////////////////
-// Footnotes generator
-/////////////////////////////////////////////////////////////////////
-
-/* Based on footnote generation code from:
- * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
- */
-
-footnotes: function () {
-  // Delete existing footnote entries in case we're reloading the footnodes.
-  var i;
-  var noteholder = document.getElementById("footnotes");
-  if (!noteholder) {
-    return;
-  }
-  var entriesToRemove = [];
-  for (i = 0; i < noteholder.childNodes.length; i++) {
-    var entry = noteholder.childNodes[i];
-    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
-      entriesToRemove.push(entry);
-  }
-  for (i = 0; i < entriesToRemove.length; i++) {
-    noteholder.removeChild(entriesToRemove[i]);
-  }
-
-  // Rebuild footnote entries.
-  var cont = document.getElementById("content");
-  var spans = cont.getElementsByTagName("span");
-  var refs = {};
-  var n = 0;
-  for (i=0; i<spans.length; i++) {
-    if (spans[i].className == "footnote") {
-      n++;
-      var note = spans[i].getAttribute("data-note");
-      if (!note) {
-        // Use [\s\S] in place of . so multi-line matches work.
-        // Because JavaScript has no s (dotall) regex flag.
-        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
-        spans[i].innerHTML =
-          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
-          "' title='View footnote' class='footnote'>" + n + "</a>]";
-        spans[i].setAttribute("data-note", note);
-      }
-      noteholder.innerHTML +=
-        "<div class='footnote' id='_footnote_" + n + "'>" +
-        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
-        n + "</a>. " + note + "</div>";
-      var id =spans[i].getAttribute("id");
-      if (id != null) refs["#"+id] = n;
-    }
-  }
-  if (n == 0)
-    noteholder.parentNode.removeChild(noteholder);
-  else {
-    // Process footnoterefs.
-    for (i=0; i<spans.length; i++) {
-      if (spans[i].className == "footnoteref") {
-        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
-        href = href.match(/#.*/)[0];  // Because IE return full URL.
-        n = refs[href];
-        spans[i].innerHTML =
-          "[<a href='#_footnote_" + n +
-          "' title='View footnote' class='footnote'>" + n + "</a>]";
-      }
-    }
-  }
-},
-
-install: function(toclevels) {
-  var timerId;
-
-  function reinstall() {
-    asciidoc.footnotes();
-    if (toclevels) {
-      asciidoc.toc(toclevels);
-    }
-  }
-
-  function reinstallAndRemoveTimer() {
-    clearInterval(timerId);
-    reinstall();
-  }
-
-  timerId = setInterval(reinstall, 500);
-  if (document.addEventListener)
-    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
-  else
-    window.onload = reinstallAndRemoveTimer;
-}
-
-}
-asciidoc.install();
-/*]]>*/
-</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
-<body class="article">
-<div id="header">
-<h1>Hinweise zum Arbeiten in der virtuellen Maschine</h1>
-</div>
-<div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph"><p>Sorgen Sie dafür, dass all Ihre Arbeiten in einem Unterverzeichnis von
-<em>/home/ubuntu/project</em> stattfinden, da dieses Verzeichnis per Browser
-außerhalb der virtuellen Maschine via <a href="/project/">/project/</a> zugänglich
-ist.</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_herunterladen_der_übungsaufgaben">Herunterladen der Übungsaufgaben</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Sie können die Aufgabenstellungen als zip Datei auf der Kursseite
-<a href="https://moodle.htw-aalen.de/course/view.php?id=1448">https://moodle.htw-aalen.de/course/view.php?id=1448</a> herunterladen und mit
-Winscp auf die virtuelle Maschine ins Verzeichnis <code>/home/ubuntu/project</code>
-kopieren. Dort können Sie die Datei mit dem Kommando <code>unzip</code> entpacken.</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_abgabe_der_übung">Abgabe der Übung</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Sie dürfen die Aufgaben in Gruppen von maximal 3 Studenten gemeinsam
-bearbeiten.  Es muss nur ein Exemplar Ihrer Übung pro Gruppe abgegeben werden!</p></div>
-<div class="paragraph"><p>Bearbeiten Sie die Übungsaufgabe so, wie es in der pdf Datei angegeben ist.</p></div>
-<div class="paragraph"><p>Vor der ersten Abgabe legen Sie sich auf <a href="https://github.com">https://github.com</a> einen Account an.</p></div>
-<div class="paragraph"><p>Mailen Sie den Anmeldename (nicht das Passwort), sowie die Namen und
-Matrikelnummern Ihrer Gruppenmitglieder an <a href="mailto:sebastian.stigler@hs-aalen.de">sebastian.stigler@hs-aalen.de</a> mit
-dem Betreff: <em>Testing und Debugging Github Account</em></p></div>
-<div class="paragraph"><p>Zum Abgeben wechseln Sie in das Verzeichnis der Übung, in der sich die Datei
-<em>submit.cfg</em> befindet. Tippen Sie nun den Befehl</p></div>
-<div class="literalblock">
-<div class="content">
+<body>
+<header id="title-block-header">
+<h1 class="title">Hinweise zum Arbeiten in der virtuellen Maschine</h1>
+<p class="author">Sebastian Stigler <a href="mailto:sebastian.stigler@hs-aalen.de" class="email">sebastian.stigler@hs-aalen.de</a></p>
+</header>
+<p>Sorgen Sie dafür, dass all Ihre Arbeiten in einem Unterverzeichnis von <code>/home/vagrant/project</code> stattfinden, da dieses Verzeichnis per Browser außerhalb der virtuellen Maschine via <a href="/project/">/project/</a> zugänglich ist.</p>
+<h1 id="herunterladen-der-übungsaufgaben">Herunterladen der Übungsaufgaben</h1>
+<p>Sie können die Aufgabenstellungen als zip Datei auf der Kursseite in <a href="https://aalen.instructure.com">Canvas</a> herunterladen und mit Winscp bzw. scp auf die virtuelle Maschine ins Verzeichnis <code>/home/vagrant/project</code> kopieren. Dort können Sie die Datei mit dem Kommando <code>unzip</code> entpacken.</p>
+<h1 id="abgabe-der-übung">Abgabe der Übung</h1>
+<p>Sie dürfen die Aufgaben in Gruppen von maximal 3 Studenten gemeinsam bearbeiten. Es muss nur ein Exemplar Ihrer Übung pro Gruppe abgegeben werden!</p>
+<p>Bearbeiten Sie die Übungsaufgabe so, wie es in der PDF Datei angegeben ist.</p>
+<p>Die Organisation der Übungsgruppen erfolgt über den Canvas Kurs für diese Vorlesung. Registrieren Sie sich dort so, wie es im Wilkommens Modul angegeben ist.</p>
+<p>Die Programmieraufgabe muss in der virtuellen Maschine bearbeitet und abgegeben werden. Zum Abgeben wechseln Sie in das Verzeichnis der Übung, in der sich die Datei <code>submit.cfg</code> befindet. Tippen Sie nun den Befehl</p>
 <pre><code>submit</code></pre>
-</div></div>
-<div class="paragraph"><p>ein.</p></div>
-<div class="paragraph"><p>Beim erstmaligen Aufrufen werden Sie nach Ihren Anmeldedaten bei github
-gefragt.</p></div>
+<p>ein.</p>
+<p>Beim erstmaligen Aufrufen werden Sie nach Ihren Anmeldedaten bei github gefragt.</p>
+<h1 id="jupyter-notebook">Jupyter Notebook</h1>
+<div class="info">
+<p>Neben <em>Jupyter Notebook</em> ist auch das etwas ausführlicher <em>Jupyter Lab</em> installiert.</p>
+<p>Starten Sie es einfach mit dem Kommando <code>jupyter lab</code> wo sie sonst <code>jupyter notebook</code> geschrieben haben.</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_ipython_jupyter">IPython / Jupyter</h2>
-<div class="sectionbody">
-<div class="dlist"><dl>
-<dt class="hdlist1">
-note
-</dt>
-<dd>
-<p>
-Die Webkonsole von IPython wurde in Jupyter umbenannt.
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>Wenn Sie  die interaktiven Beispiele aus der Vorlesung noch einmal selbst
-durcharbeiten möchten, dann gehen Sie wie in dem folgenden Beispiel vor:</p></div>
-<div class="paragraph"><div class="title">Beispiel</div><p>Die Unterlagen der Vorlesung 01 finden Sie ebenfalls auf der Kursseite (siehe
-oben). Laden Sie sich die zip Datei herunter und via Winscp auf die virtuelle
-Maschine.</p></div>
-<div class="paragraph"><p>Tippen Sie in der virtuellen Maschine:</p></div>
-<div class="literalblock">
-<div class="content">
-<pre><code>cd /home/user/project
+<p>Wenn Sie die interaktiven Beispiele aus der Vorlesung noch einmal selbst durcharbeiten möchten, dann gehen Sie wie in dem folgenden Beispiel vor:</p>
+<h2 id="beispiel">Beispiel</h2>
+<p>Die Unterlagen der Vorlesung 01 finden Sie ebenfalls auf der Kursseite (siehe oben). Laden Sie sich die zip Datei herunter und via Winscp/scp auf die virtuelle Maschine.</p>
+<p>Tippen Sie in der virtuellen Maschine:</p>
+<pre><code>cd /home/vagrant/project
 unzip vorlesung01.zip
 cd vorlesung01
-ipython notebook</code></pre>
-</div></div>
-<div class="paragraph"><p>IPython hat nun die Webanwendung gestartet. Sie können nun im Browser auf Ihrem
-Hostsystem die Adresse <a href="http://127.0.0.1:8888">http://127.0.0.1:8888</a> aufrufen um die, aus der
-Vorlesung bekannte Webanwendung zu benutzen.</p></div>
-<div class="paragraph"><p>Zum beenden der IPython Sitzung schließen Sie den Browser und beenden Sie in
-der virtuellen Maschine mit Strg-C den IPython Server.</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_datenschutz">Datenschutz</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Die für die Anmeldedaten bei github wird in der Datei <em>/home/ubuntu/.gistsrc</em>
-lediglich der Anmeldename und ein Hashtoken gespeichert. Wenn Sie diese Datei
-löschen werden Sie beim nächsten Aufruf von <em>submit</em> erneut nach den
-Anmeldedaten gefragt.</p></div>
-<div class="paragraph"><p>Ihre Lösung wird gpg-verschlüsselt in Ihrem github Account als sogenanntes gist
-gespeichert.</p></div>
-<div class="paragraph"><p>Bewertet wird die jeweils letzte Version, die innerhalb des Abgabezeitraums
-dort gespeichert wird.</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_fragen">Fragen?</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Fragen können Sie via Twitter <a href="https://twitter.com/s_stigler_htw">https://twitter.com/s_stigler_htw</a> oder per Email
-<a href="mailto:sebastian.stigler@hs-aalen.de">sebastian.stigler@hs-aalen.de</a> mit dem Betreff <em>Testing und Debugging Frage</em>
-stellen.</p></div>
-</div>
-</div>
-</div>
-<div id="footnotes"><hr /></div>
-<div id="footer">
-<div id="footer-text">
-Last updated
- 2017-09-19 14:26:19 CEST
-</div>
-</div>
+jupyter notebook</code></pre>
+<p>Jupyter Notebook ist nun als Webanwendung gestartet. Sie können nun im Browser auf Ihrem Hostsystem die Adresse <a href="http://127.0.0.1:8888">http://127.0.0.1:8888</a> aufrufen um die, aus der Vorlesung bekannte Webanwendung zu benutzen.</p>
+<p>Zum beenden der Jupyter Notebook Sitzung schließen Sie den Browser und beenden Sie in der virtuellen Maschine mit Strg-C den Jupyter Notebook Server.</p>
+<h1 id="datenschutz">Datenschutz</h1>
+<p>Die für die Anmeldedaten bei github wird in der Datei <code>/home/vagrant/.config/gh/hosts.yml</code> lediglich ein Hashtoken gespeichert. Wenn Sie diese Datei löschen werden Sie beim nächsten Aufruf von <code>submit</code> erneut nach den Anmeldedaten gefragt.</p>
+<p>Ihre Lösung wird gpg-verschlüsselt in Ihrem github Account als sogenanntes <a href="https://gist.github.com">gist</a> gespeichert.</p>
+<p>Bewertet wird die jeweils letzte Version, die innerhalb des Abgabezeitraums dort gespeichert wird.</p>
+<h1 id="fragen">Fragen?</h1>
+<p>Fragen können Sie per Email an <a href="mailto:sebastian.stigler@hs-aalen.de?subject=Testing%20und%20Debugging%20Frage">sebastian.stigler@hs-aalen.de</a> mit dem Betreff T<em>esting und Debugging Frage</em> stellen.</p>
 </body>
 </html>
