@@ -43,5 +43,10 @@
 - name: set locale
   command: /usr/sbin/update-locale LANG={{ locale }}
 
-- name: dont display release update message
-  shell: chmod -x /etc/update-motd.d/90-updates-available
+- name: dont display some motd messages
+  shell: chmod -x /etc/update-motd.d/{{ item }}
+  with_items:
+    - 90-updates-available
+    - 91-release-upgrade
+    - 50-landscape-sysinfo
+    - 80-livepatch
