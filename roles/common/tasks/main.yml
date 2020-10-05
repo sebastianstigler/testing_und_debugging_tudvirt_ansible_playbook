@@ -48,5 +48,5 @@
   with_items:
     - 90-updates-available
     - 91-release-upgrade
-    - 50-landscape-sysinfo
+    - 50-motd-news
     - 80-livepatch
