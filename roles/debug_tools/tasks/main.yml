@@ -30,3 +30,6 @@
   with_items:
     - coverage
     - pylint
+
+- name: Deactivate ASLR
+  copy: src=01-disable-aslr.conf dest=/etc/sysctl.d/01-disable-aslr.conf owner=root group=root
