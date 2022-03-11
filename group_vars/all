@@ -2,7 +2,7 @@
 vm_user: vagrant
 vm_group: vagrant
 
-semester: WiSe2021
+semester: SoSe2022
 vm_hostname: "TuDvirt-{{ semester }}"
 
 timezone: Europe/Berlin
