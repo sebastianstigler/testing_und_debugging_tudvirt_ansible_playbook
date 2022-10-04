@@ -9,6 +9,8 @@
 - name: Install base packages
   apt: name={{ item }} state={{ install_state }}
   with_items:
+    - git
+    - build-essential
     - zip
     - vim
     - cscope
